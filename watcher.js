@@ -8,6 +8,7 @@ class Watcher {
     this.cb = cb;
     Dep.target = this;
     // 获取更新前的旧值
+    // 这里的vm[key]被Observer中的setter捕获，所以下一步需要对Dep.target初始化
     this.oldValue = vm[key];
     Dep.target = null;
   }

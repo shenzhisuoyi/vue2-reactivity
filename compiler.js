@@ -1,6 +1,8 @@
 class Compiler {
   constructor(vm) {
+    // 保存视图
     this.el = vm.$el;
+    // 保存Vue实例
     this.vm = vm;
     this.compile(this.el);
   }

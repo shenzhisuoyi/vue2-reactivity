@@ -12,7 +12,6 @@ class Vue {
         : options.el;
     // 2.把data转换成getter/setter，并注入到Vue实例中
     this._proxyData(this.$data);
-    // this.$data = this._proxyData(this.$data)
 
     // 3.调用Observer对象，监听数据的变化（把$data数据变成响应式）
     new Observer(this.$data);
@@ -23,6 +22,8 @@ class Vue {
   _proxyData(data) {
     Object.keys(data).forEach((key) => {
       Object.defineProperty(this, key, {
+        enumerable: true,
+        configurable: true,
         get() {
           return data[key];
         },
