@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./watcher.js"></script>
+  <script src="./dep.js"></script>
+  <script src="./observer.js"></script>
+  <script src="./compiler.js"></script>
+  <script src="./vue.js"></script>
+  <div id="app">
+    <h1>表达式</h1>
+    <h1>{{message}}</h1>
+    <h1>{{age}}</h1>
+    v-text:message <h1 v-text="message"></h1>
+    v-model:message <input type="text" v-model="message" />
+    v-model:count <input type="text" v-model="count" />
+  </div>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'why',
+        age: 18,
+        msg: 'msg22',
+        count: 'count11',
+        person: {
+          name: 7
+        }
+      }
+    })
+    // 给属性重新赋值为对象，也是响应式的
+    vm.message = 'hhh'
+
+    // 给Vue实例新增属性，不是响应式的（Object.defineProperty的弊端）
+    // 解决方案：
+    // 1. Vue.set(vm.someObject, 'b', 2)
+    // 2. this.$set(this.someObject,'b',2)
+    vm.testPro = 'ttt'
+  </script>
+</body>
+
+</html>
